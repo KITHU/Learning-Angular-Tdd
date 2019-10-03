@@ -7,18 +7,17 @@ import {Iproduct} from './product'
 })
 export class ProductListComponent implements OnInit{
     pageTitle: string = 'Product List';
-    listFilter: string = 'cart';
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
 
     _listFilter: string;
-    get plistFilter(): string{
+    get listFilter(): string{
         return this._listFilter;
     }
-    set plistFilter(value:string){
+    set listFilter(value:string){
         this._listFilter = value;
-        this.filterProducts = this.plistFilter? this.performFilter(this.plistFilter) : this.products;
+        this.filterProducts = this.listFilter? this.performFilter(this.listFilter) : this.products;
     }
 
     filterProducts:Iproduct[];
@@ -47,7 +46,7 @@ export class ProductListComponent implements OnInit{
     ]
     constructor(){
         this.filterProducts = this.products;
-        this.plistFilter = 'cart'
+        this.listFilter = 'cart'
     }
     performFilter(filterBy:string): Iproduct[]{
         filterBy = filterBy.toLocaleLowerCase();
