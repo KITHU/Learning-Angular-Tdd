@@ -45,7 +45,7 @@
                         <td>{{product.productCode}}</td>
                         <td>{{product.releaseDate}}</td>
                         <td>{{product.price | currency:'USD '}}</td>
-                        <td>{{product.startRating}}</td>
+                        <td><pm-star [rating]='product.startRating'></pm-star></td>
 
                     </tr>
                 </tbody>

@@ -1,3 +1,4 @@
+import { ProductService } from './product.service';
 import { Component, OnInit } from '@angular/core';
 import {Iproduct} from './product'
 
@@ -22,31 +23,8 @@ export class ProductListComponent implements OnInit{
 
     filterProducts:Iproduct[];
 
-    products: Iproduct[]=[
-        {
-            "productId":2,
-            "ProductName":"Garden",
-            "productCode":"GBN-0023",
-            "releaseDate":"March 18, 2019",
-            "description":"15 gallon capacity rolling garden",
-            "price":32.99,
-            "startRating":4.2,
-            "imageUrl":"assets/images/yard-cart.jpg"
-        },
-        {
-            "productId":2,
-            "ProductName":"cart",
-            "productCode":"GBN-0023",
-            "releaseDate":"March 18, 2019",
-            "description":"15 gallon capacity rolling garden",
-            "price":32.99,
-            "startRating":4.2,
-            "imageUrl":"assets/images/yard-cart.jpg"
-        }
-    ]
-    constructor(){
-        this.filterProducts = this.products;
-        this.listFilter = 'cart'
+    products: Iproduct[];
+    constructor(private productService: ProductService){
     }
     performFilter(filterBy:string): Iproduct[]{
         filterBy = filterBy.toLocaleLowerCase();
@@ -57,5 +35,7 @@ export class ProductListComponent implements OnInit{
     }
     ngOnInit(): void {
         console.log('In onInit');
+        this.products = this.productService.getProducts();
+        this.filterProducts = this.products;
     }
 }
